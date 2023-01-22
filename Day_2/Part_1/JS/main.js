@@ -1,5 +1,5 @@
-let source = `
-A Y
+let source = 
+`A Y
 B Z
 C Y
 B Y
@@ -2498,8 +2498,7 @@ A Y
 B Y
 A Z
 A Y
-A Y
-`
+A Y`
 /*  Recap
 
   A == Rock == X == 1
@@ -2516,3 +2515,43 @@ A Y
 
   What would your total score be if everything goes exactly according to your strategy guide?
 */
+
+let pointsAccumulated = 0;
+array = source.split(/\n/g);
+for (let i=0; i < array.length; i++) {
+  let opponent = array[i][0]; 
+  let me = array[i][2];
+  if (me == "X" && opponent == "C") {
+    pointsAccumulated += 6+1;
+  }
+  else if (me == "X" && opponent == "B") {
+    pointsAccumulated += 1;
+  }
+  else if (me == "X" && opponent == "A") {
+    pointsAccumulated += 3+1;
+  };
+
+  if (me == "Y" && opponent == "A") {
+    pointsAccumulated += 2+6;
+  }
+  else if (me == "Y" && opponent == "C") {
+    pointsAccumulated += 2;
+  }
+  else if (me == "Y" && opponent == "B") {
+    pointsAccumulated += 2+3;
+  };
+
+  if (me == "Z" && opponent == "B") {
+    pointsAccumulated += 3+6;
+  }
+  else if (me == "Z" && opponent == "A") {
+    pointsAccumulated += 3;
+  }
+  else if (me == "Z" && opponent == "C") {
+    pointsAccumulated += 3+3;
+  };
+}
+
+function Day2() {
+  document.getElementById("return").innerHTML = "The result is " + pointsAccumulated;
+}
